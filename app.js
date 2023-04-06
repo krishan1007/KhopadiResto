@@ -6,8 +6,9 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 import cors from "cors";
+import MongoDBStore from 'connect-mongodb-session';
 
-const MongoDBStore = require('connect-mongodb-session')(session);
+const MongoDBStoreSession = MongoDBStore(session);
 
 const mongoDBOptions = {
   uri: process.env.MONGO_URI, // The URI of your MongoDB database
@@ -27,7 +28,9 @@ dotenv.config({
 //using middlewares
 
 app.use(session({
-    store: new MongoDBStore(mongoDBOptions),
+
+    //okie
+    store: new MongoDBStoreSession(mongoDBOptions),
 
     secret:process.env.SECRET_S,
     resave:false,
