@@ -2,6 +2,7 @@ import { asyncError } from "../middlewares/errorMiddleware.js";
 import { Order } from "../models/Order.js";
 import {User} from "../models/User.js"
 
+
 export const myProfile=(req,res,next)=>{
 res.status(200).json({
     success:true,
@@ -19,6 +20,7 @@ export const logout = (req,res,next)=>{
         httpOnly:process.env.NODE_ENV === "development" ? false : true,
         sameSite:process.env.NODE_ENV === "development" ? false : "none"
       });
+
       res.status(200).json({
         message:"logged Out"
       })
