@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { connectPassport } from "./utils/Provider.js";
 import cookieParser from "cookie-parser";
  import { errorMiddleware } from "./middlewares/errorMiddleware.js";
-import session from "cookie-session";
+import session from "express-session";
 import passport from "passport";
 import cors from "cors";
 const app= express();
@@ -17,9 +17,11 @@ dotenv.config({
 //using middlewares
 
 app.use(session({
+    store: new RedisStore(),
     secret:process.env.SECRET_S,
     resave:false,
     saveUninitialized:false,
+   
 
     cookie:{
         secure:process.env.NODE_ENV === "development" ? false : true,
