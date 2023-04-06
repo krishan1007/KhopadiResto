@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { connectPassport } from "./utils/Provider.js";
 import cookieParser from "cookie-parser";
  import { errorMiddleware } from "./middlewares/errorMiddleware.js";
-import session from "express-session";
+import session from "cookie-session";
 import passport from "passport";
 import cors from "cors";
 const app= express();
