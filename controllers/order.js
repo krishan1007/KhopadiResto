@@ -104,7 +104,7 @@ export const paymentVerification =asyncError(async(req,res,next)=>{
 
       const body = razorpay_order_id+"|"+razorpay_payment_id;
 
-      const expectedSignature = crypto.createHash("sha256",process.env.RAZOR_SECRET).update(body).digest("hex");
+      const expectedSignature = crypto.Hmac("sha256",process.env.RAZOR_SECRET).update(body).digest("hex");
 
       const isAuthentic = expectedSignature === razorpay_signature;
       
